@@ -1,5 +1,6 @@
 // Variables globales
 let inversionistas = [];
+let compras = []; // Lista para registrar las compras
 const totalInversion = 6000; // Total de inversión inicial
 
 // Cargar datos de los inversionistas desde el JSON
@@ -10,24 +11,42 @@ async function cargarInversionistas() {
             throw new Error(`Error al cargar el archivo JSON: ${response.status}`);
         }
         inversionistas = await response.json();
-
-        // Asignar valores predeterminados para los campos faltantes
-        inversionistas = inversionistas.map(inversionista => ({
-            ...inversionista,
-            saldo: inversionista.saldo || 0,
-            ganancias: inversionista.ganancias || 0,
-            compras: inversionista.compras || []
-        }));
-
         mostrarInversionistas();
         cargarSelectCompradores();
         cargarFiltroInversionistas();
         mostrarTotalInversion();
-        console.log('Datos cargados correctamente:', inversionistas);
+        console.log('Datos de inversionistas cargados:', inversionistas);
     } catch (error) {
         console.error('Error al cargar los datos de los inversionistas:', error);
         alert('No se pudieron cargar los datos de los inversionistas. Asegúrate de que el servidor esté funcionando.');
     }
+}
+
+// Registrar una nueva compra
+function registrarCompra(buyerName, productCode, quantity, price) {
+    const compra = {
+        comprador: buyerName,
+        producto: productCode,
+        cantidad: quantity,
+        precio: price,
+        total: quantity * price
+    };
+
+    compras.push(compra);
+    console.log('Compra registrada:', compra);
+
+    // Actualizar la interfaz y mostrar un mensaje
+    alert(`Compra registrada: ${buyerName} compró ${quantity} unidades del producto ${productCode} por $${compra.total.toFixed(2)}.`);
+}
+
+// Exportar las compras registradas a un archivo JSON
+function exportarCompras() {
+    const comprasJson = JSON.stringify(compras, null, 2); // Convertir compras a formato JSON
+    const blob = new Blob([comprasJson], { type: 'application/json' });
+    const link = document.createElement('a');
+    link.href = URL.createObjectURL(blob);
+    link.download = 'compras.json';
+    link.click();
 }
 
 // Mostrar los inversionistas en la tabla
@@ -43,8 +62,6 @@ function mostrarInversionistas() {
             </td>
             <td>${inversionista.nombre}</td>
             <td>$${inversionista.inversion.toFixed(2)}</td>
-            <td>-</td> <!-- Historial de Compras -->
-            <td>-</td> <!-- Ganancias -->
         `;
         investorList.appendChild(row);
     });
@@ -98,23 +115,24 @@ function filtrarInversionista() {
         document.getElementById('investor-photo').src = `./fotos/${investor.nombre}.jpg`;
         document.getElementById('investor-investment').textContent = `$${investor.inversion.toFixed(2)}`;
         
-        // Saldo pendiente
-        const balance = investor.saldo || 0;
+        // Mostrar saldo pendiente como ejemplo (puedes ampliar esto según tu lógica)
         const balanceElement = document.getElementById('investor-balance');
-        balanceElement.textContent = balance > 0 ? `$${balance.toFixed(2)}` : 'Sin saldos pendientes';
-        balanceElement.className = balance > 0 ? 'red' : 'green';
+        balanceElement.textContent = 'Sin saldos pendientes';
+        balanceElement.className = 'green';
 
-        // Ganancias
-        document.getElementById('investor-earnings').textContent = `$${(investor.ganancias || 0).toFixed(2)}`;
+        // Mostrar ganancias como ejemplo
+        document.getElementById('investor-earnings').textContent = '$0.00';
 
-        // Historial de compras
+        // Historial de compras del inversionista
         const purchaseHistory = document.getElementById('purchase-history');
         purchaseHistory.innerHTML = '';
-        (investor.compras || []).forEach(compra => {
-            const li = document.createElement('li');
-            li.textContent = `${compra.producto} - ${compra.cantidad} x $${compra.precio.toFixed(2)}`;
-            purchaseHistory.appendChild(li);
-        });
+        compras
+            .filter(compra => compra.comprador === investor.nombre)
+            .forEach(compra => {
+                const li = document.createElement('li');
+                li.textContent = `${compra.producto} - ${compra.cantidad} x $${compra.precio.toFixed(2)}`;
+                purchaseHistory.appendChild(li);
+            });
 
         investorInfo.style.display = 'block';
     } else {
@@ -158,29 +176,14 @@ document.getElementById('form-sales').addEventListener('submit', function (event
     const buyerName = document.getElementById('buyer-name').value;
     const productCode = document.getElementById('product-code').value;
     const quantity = parseInt(document.getElementById('quantity').value);
+    const price = 10; // Ejemplo: Precio fijo de cada producto
 
     if (!buyerName || !productCode || isNaN(quantity)) {
         alert('Por favor, completa todos los campos.');
         return;
     }
 
-    alert(`Venta registrada: ${buyerName} compró ${quantity} unidades del producto ${productCode}.`);
-    this.reset();
-});
-
-// Registro de entradas
-document.getElementById('form-entries').addEventListener('submit', function (event) {
-    event.preventDefault();
-
-    const productCode = document.getElementById('product-code').value;
-    const quantity = parseInt(document.getElementById('quantity').value);
-
-    if (!productCode || isNaN(quantity)) {
-        alert('Por favor, completa todos los campos.');
-        return;
-    }
-
-    alert(`Entrada registrada: ${quantity} unidades del producto ${productCode} añadidas al inventario.`);
+    registrarCompra(buyerName, productCode, quantity, price);
     this.reset();
 });
 
