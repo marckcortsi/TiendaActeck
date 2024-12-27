@@ -55,19 +55,29 @@ function cargarSelectCompradores() {
     });
 }
 
-// Funciones para manejar secciones
+// Función para mostrar una sección con animación
 function showSection(sectionId) {
     const sections = document.querySelectorAll('main');
-    const menu = document.getElementById('main-menu');
-    sections.forEach(section => (section.style.display = 'none'));
-    menu.style.display = 'none';
-    document.getElementById(sectionId).style.display = 'block';
+    sections.forEach(section => {
+        if (section.id === sectionId) {
+            section.style.display = 'block';
+            section.classList.add('slideIn');
+            section.classList.remove('slideOut');
+        } else {
+            section.classList.add('slideOut');
+            setTimeout(() => (section.style.display = 'none'), 400); // Esconder después de la animación
+        }
+    });
 }
 
+// Mostrar el menú principal
 function showMenu() {
     const sections = document.querySelectorAll('main');
     const menu = document.getElementById('main-menu');
-    sections.forEach(section => (section.style.display = 'none'));
+    sections.forEach(section => {
+        section.classList.add('slideOut');
+        setTimeout(() => (section.style.display = 'none'), 400);
+    });
     menu.style.display = 'flex';
 }
 
@@ -85,6 +95,22 @@ document.getElementById('form-sales').addEventListener('submit', function (event
     }
 
     alert(`Venta registrada: ${buyerName} compró ${quantity} unidades del producto ${productCode}.`);
+    this.reset();
+});
+
+// Registro de entradas
+document.getElementById('form-entries').addEventListener('submit', function (event) {
+    event.preventDefault();
+
+    const productCode = document.getElementById('product-code').value;
+    const quantity = parseInt(document.getElementById('quantity').value);
+
+    if (!productCode || isNaN(quantity)) {
+        alert('Por favor, completa todos los campos.');
+        return;
+    }
+
+    alert(`Entrada registrada: ${quantity} unidades del producto ${productCode} añadidas al inventario.`);
     this.reset();
 });
 
