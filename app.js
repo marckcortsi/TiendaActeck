@@ -7,7 +7,7 @@ async function cargarInversionistas() {
     try {
         const response = await fetch('./db/inversionistas.json'); // Ruta al archivo JSON
         if (!response.ok) {
-            throw new Error(`HTTP error! status: ${response.status}`);
+            throw new Error(`Error al cargar el archivo JSON: ${response.status}`);
         }
         inversionistas = await response.json();
         mostrarInversionistas();
@@ -17,7 +17,7 @@ async function cargarInversionistas() {
         console.log('Datos cargados correctamente:', inversionistas);
     } catch (error) {
         console.error('Error al cargar los datos de los inversionistas:', error);
-        alert('No se pudieron cargar los datos de los inversionistas. Verifica la configuración.');
+        alert('No se pudieron cargar los datos de los inversionistas. Asegúrate de que el servidor esté funcionando.');
     }
 }
 
