@@ -1,11 +1,198 @@
-function showSection(sectionId) {
-    const sections = document.querySelectorAll('main');
-    sections.forEach(section => {
-        if (section.id === sectionId) {
-            section.style.display = 'block';
-            section.classList.add('slideIn');
-        } else {
-            section.style.display = 'none';
-        }
-    });
+/* Configuración general */
+body {
+    font-family: -apple-system, BlinkMacSystemFont, "San Francisco", Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f9f9fb; /* Fondo claro */
+    color: #1c1c1e;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    overflow-x: hidden; /* Evita desplazamiento horizontal */
+}
+
+/* Encabezado */
+header {
+    background-color: #ffffff;
+    color: #1c1c1e;
+    padding: 1rem;
+    text-align: center;
+    width: 100%;
+    box-shadow: 0px 2px 6px rgba(0, 0, 0, 0.1);
+    font-size: 1.4rem;
+    border-bottom: 2px solid #e0e0e5;
+}
+
+/* Animaciones */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes slideIn {
+    from {
+        opacity: 0;
+        transform: translateX(100%);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+@keyframes slideOut {
+    from {
+        opacity: 1;
+        transform: translateX(0);
+    }
+    to {
+        opacity: 0;
+        transform: translateX(-100%);
+    }
+}
+
+/* Transición entre interfaces */
+main {
+    display: none;
+    animation: fadeIn 0.4s ease-in-out;
+    padding: 1rem;
+    width: 90%;
+    max-width: 420px;
+    background-color: #ffffff;
+    border-radius: 16px;
+    box-shadow: 0px 6px 18px rgba(0, 0, 0, 0.1);
+    margin-top: 1rem;
+    text-align: center;
+    overflow: hidden;
+}
+
+/* Menú principal */
+.menu {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 1.2rem;
+    margin-top: 2rem;
+    width: 100%;
+}
+
+/* Botones del menú */
+.menu button, .button, .back-button {
+    background-color: #007aff;
+    color: white;
+    border: none;
+    padding: 0.8rem 1.2rem;
+    border-radius: 12px;
+    font-size: 1rem;
+    text-align: center;
+    cursor: pointer;
+    width: 90%;
+    max-width: 300px;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.15);
+    transition: all 0.3s ease-in-out;
+}
+
+.menu button:hover, .button:hover, .back-button:hover {
+    background-color: #005fcb;
+    box-shadow: 0px 6px 12px rgba(0, 0, 0, 0.2);
+    transform: translateY(-3px);
+}
+
+.menu button:active, .button:active, .back-button:active {
+    background-color: #0047a5;
+    transform: translateY(0);
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.15);
+}
+
+/* Botones de cancelar */
+.back-button {
+    background-color: #f0f0f5;
+    color: #333;
+    border: 1px solid #d1d1d6;
+}
+
+.back-button:hover {
+    background-color: #e5e5ea;
+}
+
+/* Formularios */
+form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.8rem;
+    width: 100%;
+}
+
+form label {
+    font-size: 1rem;
+    font-weight: bold;
+    color: #333;
+    text-align: left;
+    width: 90%;
+}
+
+form input, form select {
+    width: 90%;
+    max-width: 280px;
+    padding: 0.6rem;
+    border: 1px solid #d1d1d6;
+    border-radius: 8px;
+    font-size: 0.9rem;
+    background-color: #f9f9fb;
+    box-shadow: inset 0px 1px 3px rgba(0, 0, 0, 0.05);
+    margin-bottom: 0.5rem;
+}
+
+/* Tablas */
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 1.5rem;
+}
+
+table, th, td {
+    border: 1px solid #d1d1d6;
+}
+
+th, td {
+    padding: 0.6rem;
+    text-align: center;
+    font-size: 0.9rem;
+}
+
+th {
+    background-color: #f5f5f7;
+    font-weight: bold;
+}
+
+/* Estilo adaptable para dispositivos móviles */
+@media screen and (max-width: 600px) {
+    header {
+        font-size: 1.1rem;
+        padding: 0.8rem;
+    }
+
+    form input, form select {
+        padding: 0.5rem;
+        font-size: 0.85rem;
+    }
+
+    .menu button, .button, .back-button {
+        padding: 0.6rem 1rem;
+        font-size: 0.9rem;
+    }
+
+    main {
+        padding: 0.8rem;
+    }
 }
