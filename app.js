@@ -20,7 +20,7 @@ async function cargarInversionistas() {
     }
 }
 
-// Mostrar los inversionistas en la tabla
+// Mostrar los inversionistas en la tabla con sus fotos
 function mostrarInversionistas() {
     const investorList = document.getElementById('investor-list');
     investorList.innerHTML = '';
@@ -28,6 +28,9 @@ function mostrarInversionistas() {
     inversionistas.forEach(inversionista => {
         const row = document.createElement('tr');
         row.innerHTML = `
+            <td>
+                <img src="./fotos/${inversionista.nombre}.jpg" alt="Foto de ${inversionista.nombre}" style="width: 50px; height: 50px; border-radius: 50%; object-fit: cover;">
+            </td>
             <td>${inversionista.nombre}</td>
             <td>$${inversionista.inversion.toFixed(2)}</td>
             <td>-</td> <!-- Historial de Compras -->
@@ -60,14 +63,14 @@ function showSection(sectionId) {
     const sections = document.querySelectorAll('main');
     const menu = document.getElementById('main-menu');
     menu.style.display = 'none'; // Ocultar el menú principal
+
     sections.forEach(section => {
         if (section.id === sectionId) {
-            section.style.display = 'block';
-            section.classList.add('slideIn');
-            section.classList.remove('slideOut');
+            section.classList.add('show');
+            section.classList.remove('hide');
         } else {
-            section.classList.add('slideOut');
-            setTimeout(() => (section.style.display = 'none'), 400); // Esconder después de la animación
+            section.classList.add('hide');
+            setTimeout(() => section.classList.remove('show'), 300); // Retira la visibilidad después de la animación
         }
     });
 }
@@ -76,11 +79,12 @@ function showSection(sectionId) {
 function showMenu() {
     const sections = document.querySelectorAll('main');
     const menu = document.getElementById('main-menu');
-    sections.forEach(section => {
-        section.classList.add('slideOut');
-        setTimeout(() => (section.style.display = 'none'), 400);
-    });
     menu.style.display = 'flex'; // Mostrar el menú principal
+
+    sections.forEach(section => {
+        section.classList.add('hide');
+        setTimeout(() => section.classList.remove('show'), 300); // Oculta después de la animación
+    });
 }
 
 // Registro de ventas
