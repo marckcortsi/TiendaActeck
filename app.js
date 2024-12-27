@@ -55,9 +55,11 @@ function cargarSelectCompradores() {
     });
 }
 
-// Función para mostrar una sección con animación
+// Función para mostrar una sección y ocultar el menú principal
 function showSection(sectionId) {
     const sections = document.querySelectorAll('main');
+    const menu = document.getElementById('main-menu');
+    menu.style.display = 'none'; // Ocultar el menú principal
     sections.forEach(section => {
         if (section.id === sectionId) {
             section.style.display = 'block';
@@ -70,7 +72,7 @@ function showSection(sectionId) {
     });
 }
 
-// Mostrar el menú principal
+// Mostrar el menú principal y ocultar las otras secciones
 function showMenu() {
     const sections = document.querySelectorAll('main');
     const menu = document.getElementById('main-menu');
@@ -78,7 +80,7 @@ function showMenu() {
         section.classList.add('slideOut');
         setTimeout(() => (section.style.display = 'none'), 400);
     });
-    menu.style.display = 'flex';
+    menu.style.display = 'flex'; // Mostrar el menú principal
 }
 
 // Registro de ventas
