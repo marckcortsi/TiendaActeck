@@ -10,6 +10,15 @@ async function cargarInversionistas() {
             throw new Error(`Error al cargar el archivo JSON: ${response.status}`);
         }
         inversionistas = await response.json();
+
+        // Asignar valores predeterminados para los campos faltantes
+        inversionistas = inversionistas.map(inversionista => ({
+            ...inversionista,
+            saldo: inversionista.saldo || 0,
+            ganancias: inversionista.ganancias || 0,
+            compras: inversionista.compras || []
+        }));
+
         mostrarInversionistas();
         cargarSelectCompradores();
         cargarFiltroInversionistas();
