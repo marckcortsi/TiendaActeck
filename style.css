@@ -1,0 +1,197 @@
+/* Configuración general */
+body {
+    font-family: -apple-system, BlinkMacSystemFont, "San Francisco", Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f5f5f7;
+    color: #1c1c1e;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+}
+
+/* Encabezado */
+header {
+    background-color: #ffffff;
+    color: #1c1c1e;
+    padding: 1rem;
+    text-align: center;
+    width: 100%;
+    box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
+    font-size: 1.5rem;
+    border-bottom: 1px solid #e5e5ea;
+}
+
+/* Menú principal */
+.menu {
+    display: flex;
+    flex-direction: column; /* Botones verticales en el menú principal */
+    align-items: center;
+    justify-content: center;
+    gap: 1.5rem;
+    margin-top: 2rem;
+}
+
+.menu button {
+    background-color: #ffffff;
+    color: #1c1c1e;
+    border: 1px solid #d1d1d6;
+    padding: 1rem;
+    cursor: pointer;
+    border-radius: 12px;
+    font-size: 1.2rem;
+    width: 90%; /* Botones se ajustan al ancho */
+    max-width: 320px;
+    transition: all 0.3s ease-in-out;
+    text-align: center;
+    box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.menu button:hover {
+    background-color: #f0f0f5;
+    transform: translateY(-3px);
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.menu button:active {
+    transform: translateY(0);
+    box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+/* Contenido principal */
+main {
+    display: none;
+    padding: 2rem;
+    width: 100%;
+    max-width: 500px;
+    background-color: #ffffff;
+    border-radius: 16px;
+    box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.2);
+    margin-top: 1rem;
+    text-align: center;
+    animation: fadeIn 0.3s ease-in-out;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Títulos */
+h2 {
+    color: #1c1c1e;
+    margin-bottom: 1.5rem;
+    font-size: 1.5rem;
+    font-weight: 600;
+    text-align: center;
+}
+
+/* Formularios */
+form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1.5rem;
+    width: 100%;
+}
+
+form label {
+    font-size: 1rem;
+    font-weight: bold;
+    color: #3a3a3c;
+    text-align: center;
+    display: block;
+    width: 100%;
+}
+
+form input {
+    width: 100%;
+    padding: 0.75rem;
+    border: 1px solid #d1d1d6;
+    border-radius: 12px;
+    font-size: 1rem;
+    background-color: #f9f9f9;
+    box-shadow: inset 0px 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+/* Botones generales */
+.button {
+    background: linear-gradient(135deg, #007aff, #005fcb);
+    color: white;
+    border: none;
+    padding: 0.75rem 1.5rem;
+    cursor: pointer;
+    border-radius: 12px;
+    font-size: 1rem;
+    text-align: center;
+    transition: all 0.3s ease-in-out;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.button:hover {
+    transform: translateY(-3px);
+    box-shadow: 0px 6px 12px rgba(0, 0, 0, 0.2);
+}
+
+.button:active {
+    transform: translateY(0);
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.back-button {
+    background-color: #f5f5f7;
+    color: #1c1c1e;
+    border: 1px solid #d1d1d6;
+    padding: 0.75rem;
+    cursor: pointer;
+    border-radius: 12px;
+    font-size: 1rem;
+    margin-top: 1rem;
+    width: 100%;
+    max-width: 200px;
+    transition: all 0.3s ease-in-out;
+}
+
+.back-button:hover {
+    background-color: #e5e5ea;
+    transform: translateY(-3px);
+}
+
+/* Contenedores con múltiples botones (horizontal) */
+.button-container {
+    display: flex;
+    flex-direction: row; /* Botones organizados en fila (izquierda a derecha) */
+    justify-content: center;
+    gap: 1rem; /* Espaciado entre botones */
+    margin-top: 1rem;
+}
+
+/* Tablas */
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 1.5rem;
+}
+
+table, th, td {
+    border: 1px solid #d1d1d6;
+}
+
+th, td {
+    padding: 0.75rem;
+    text-align: left;
+}
+
+th {
+    background-color: #f5f5f7;
+    font-weight: bold;
+    text-align: center;
+}

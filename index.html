@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tiénda Interna</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header>
+        <h1>Tiénda Interna</h1>
+    </header>
+    <div class="menu" id="main-menu">
+        <button onclick="showSection('ventas')">Venta</button>
+        <button onclick="showSection('inventario')">Inventario</button>
+        <button onclick="showSection('entradas')">Entradas</button>
+        <button onclick="showSection('consulta-inversionistas')">Consulta de Inversionistas</button>
+    </div>
+
+    <main id="ventas">
+        <h2>Registro de Ventas</h2>
+        <form id="form-sales">
+            <label for="buyer-name">Selecciona el Comprador:</label>
+            <select id="buyer-name" name="buyer-name" required>
+                <!-- Opciones cargadas dinámicamente -->
+            </select>
+
+            <label for="product-code">Código del Producto:</label>
+            <input type="text" id="product-code" name="product-code" required>
+
+            <label for="quantity">Cantidad:</label>
+            <input type="number" id="quantity" name="quantity" required>
+
+            <div class="button-container">
+                <button type="submit" class="button">Registrar Venta</button>
+                <button type="button" class="back-button" onclick="showMenu()">Regresar</button>
+            </div>
+        </form>
+    </main>
+
+    <main id="inventario">
+        <h2>Inventario</h2>
+        <table>
+            <thead>
+                <tr>
+                    <th>Código</th>
+                    <th>Producto</th>
+                    <th>Costo</th>
+                    <th>Precio</th>
+                    <th>Stock</th>
+                </tr>
+            </thead>
+            <tbody id="inventory-list">
+                <!-- Aquí se agregarán las filas dinámicamente -->
+            </tbody>
+        </table>
+        <div class="button-container">
+            <button type="button" class="back-button" onclick="showMenu()">Regresar</button>
+        </div>
+    </main>
+
+    <main id="entradas">
+        <h2>Registro de Entradas</h2>
+        <form id="form-entries">
+            <label for="product-code">Código del Producto:</label>
+            <input type="text" id="product-code" name="product-code" required>
+
+            <label for="quantity">Cantidad:</label>
+            <input type="number" id="quantity" name="quantity" required>
+
+            <div class="button-container">
+                <button type="submit" class="button">Registrar Entrada</button>
+                <button type="button" class="back-button" onclick="showMenu()">Regresar</button>
+            </div>
+        </form>
+    </main>
+
+    <main id="consulta-inversionistas">
+        <h2>Consulta de Inversionistas</h2>
+        <p>Total inversión inicial: <strong id="total-investment"></strong></p>
+        <table>
+            <thead>
+                <tr>
+                    <th>Nombre</th>
+                    <th>Inversión</th>
+                    <th>Historial de Compras</th>
+                    <th>Ganancias</th>
+                </tr>
+            </thead>
+            <tbody id="investor-list">
+                <!-- Aquí se agregarán los datos dinámicamente -->
+            </tbody>
+        </table>
+        <div class="button-container">
+            <button type="button" class="back-button" onclick="showMenu()">Regresar</button>
+        </div>
+    </main>
+
+    <script src="app.js"></script>
+</body>
+</html>
