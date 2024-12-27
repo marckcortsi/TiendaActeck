@@ -12,6 +12,7 @@ async function cargarInversionistas() {
         inversionistas = await response.json();
         mostrarInversionistas();
         cargarSelectCompradores();
+        cargarFiltroInversionistas();
         mostrarTotalInversion();
         console.log('Datos cargados correctamente:', inversionistas);
     } catch (error) {
@@ -20,7 +21,7 @@ async function cargarInversionistas() {
     }
 }
 
-// Mostrar los inversionistas en la tabla con sus fotos
+// Mostrar los inversionistas en la tabla
 function mostrarInversionistas() {
     const investorList = document.getElementById('investor-list');
     investorList.innerHTML = '';
@@ -46,7 +47,7 @@ function mostrarTotalInversion() {
     totalInvestmentElement.textContent = `$${totalInversion.toFixed(2)}`;
 }
 
-// Cargar los nombres de los inversionistas en el select
+// Cargar los nombres de los inversionistas en el select para ventas
 function cargarSelectCompradores() {
     const select = document.getElementById('buyer-name');
     select.innerHTML = '<option value="">Selecciona un comprador</option>';
@@ -56,6 +57,60 @@ function cargarSelectCompradores() {
         option.textContent = inversionista.nombre;
         select.appendChild(option);
     });
+}
+
+// Cargar los nombres de los inversionistas en el filtro de consulta
+function cargarFiltroInversionistas() {
+    const filter = document.getElementById('investor-filter');
+    filter.innerHTML = '<option value="">Selecciona un usuario</option>';
+    inversionistas.forEach(inversionista => {
+        const option = document.createElement('option');
+        option.value = inversionista.nombre;
+        option.textContent = inversionista.nombre;
+        filter.appendChild(option);
+    });
+}
+
+// Filtrar información del inversionista seleccionado
+function filtrarInversionista() {
+    const select = document.getElementById('investor-filter');
+    const investorInfo = document.getElementById('investor-info');
+    const selectedName = select.value;
+
+    if (!selectedName) {
+        investorInfo.style.display = 'none';
+        return;
+    }
+
+    const investor = inversionistas.find(inv => inv.nombre === selectedName);
+
+    if (investor) {
+        document.getElementById('investor-name').textContent = investor.nombre;
+        document.getElementById('investor-photo').src = `./fotos/${investor.nombre}.jpg`;
+        document.getElementById('investor-investment').textContent = `$${investor.inversion.toFixed(2)}`;
+        
+        // Saldo pendiente
+        const balance = investor.saldo || 0;
+        const balanceElement = document.getElementById('investor-balance');
+        balanceElement.textContent = balance > 0 ? `$${balance.toFixed(2)}` : 'Sin saldos pendientes';
+        balanceElement.className = balance > 0 ? 'red' : 'green';
+
+        // Ganancias
+        document.getElementById('investor-earnings').textContent = `$${(investor.ganancias || 0).toFixed(2)}`;
+
+        // Historial de compras
+        const purchaseHistory = document.getElementById('purchase-history');
+        purchaseHistory.innerHTML = '';
+        (investor.compras || []).forEach(compra => {
+            const li = document.createElement('li');
+            li.textContent = `${compra.producto} - ${compra.cantidad} x $${compra.precio.toFixed(2)}`;
+            purchaseHistory.appendChild(li);
+        });
+
+        investorInfo.style.display = 'block';
+    } else {
+        investorInfo.style.display = 'none';
+    }
 }
 
 // Función para mostrar una sección y ocultar el menú principal

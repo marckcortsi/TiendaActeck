@@ -5,10 +5,7 @@ body {
     padding: 0;
     background-color: #f9f9fb;
     color: #1c1c1e;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
+    text-align: center; /* Todos los textos centrados */
     min-height: 100vh;
     overflow-x: hidden;
 }
@@ -18,50 +15,34 @@ header {
     background-color: #ffffff;
     color: #1c1c1e;
     padding: 1rem;
-    text-align: center;
-    width: 100%;
-    box-shadow: 0px 2px 6px rgba(0, 0, 0, 0.1);
-    font-size: 1.4rem;
+    font-size: 1.5rem;
     border-bottom: 2px solid #e0e0e5;
 }
 
-/* Menú principal */
-.menu {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    gap: 1.2rem;
-    margin-top: 2rem;
-    width: 100%;
-}
-
 /* Botones generales */
-.menu button, .button, .back-button {
-    background-color: #ffffff; /* Fondo blanco */
-    color: #1c1c1e; /* Texto en negro */
-    border: 2px solid #1c1c1e; /* Contorno negro */
-    padding: 0.8rem 1.2rem;
-    border-radius: 12px; /* Bordes redondeados */
-    font-size: 1rem;
-    text-align: center;
+button {
+    background-color: #ffffff;
+    color: #1c1c1e;
+    border: 2px solid #1c1c1e;
+    border-radius: 8px;
+    padding: 0.8rem 1rem;
     cursor: pointer;
+    transition: 0.3s ease-in-out;
+    font-size: 1rem;
     width: 90%;
     max-width: 300px;
-    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.15); /* Efecto bombeado */
-    transition: all 0.3s ease-in-out;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.15);
 }
 
-.menu button:hover, .button:hover, .back-button:hover {
-    background-color: #f0f0f5; /* Fondo más claro al pasar el cursor */
-    transform: translateY(-2px); /* Sutil elevación */
-    box-shadow: 0px 6px 12px rgba(0, 0, 0, 0.2); /* Sombra más pronunciada */
+button:hover {
+    background-color: #f0f0f5;
+    transform: translateY(-2px);
 }
 
-.menu button:active, .button:active, .back-button:active {
-    background-color: #e5e5ea; /* Fondo ligeramente más oscuro al hacer clic */
-    transform: translateY(0); /* Baja de nuevo */
-    box-shadow: 0px 2px 6px rgba(0, 0, 0, 0.1); /* Sombra más pequeña */
+button:active {
+    background-color: #e5e5ea;
+    transform: translateY(0);
+    box-shadow: 0px 2px 6px rgba(0, 0, 0, 0.1);
 }
 
 /* Formularios */
@@ -115,6 +96,24 @@ th {
     font-weight: bold;
 }
 
+/* Fotos */
+img {
+    border: 2px solid #d1d1d6;
+    border-radius: 50%;
+    object-fit: cover;
+}
+
+/* Saldo pendiente */
+#investor-balance.red {
+    color: red;
+    font-weight: bold;
+}
+
+#investor-balance.green {
+    color: green;
+    font-weight: bold;
+}
+
 /* Animaciones */
 @keyframes fadeIn {
     from {
@@ -153,24 +152,23 @@ main.hide {
     display: none;
 }
 
-/* Estilo adaptable para dispositivos móviles */
+/* Ajustes móviles */
 @media screen and (max-width: 600px) {
+    body {
+        font-size: 0.9rem;
+    }
+
     header {
-        font-size: 1.1rem;
-        padding: 0.8rem;
+        font-size: 1.2rem;
+    }
+
+    button {
+        padding: 0.6rem 0.8rem;
+        font-size: 0.85rem;
     }
 
     form input, form select {
         padding: 0.5rem;
         font-size: 0.85rem;
-    }
-
-    .menu button, .button, .back-button {
-        padding: 0.6rem 1rem;
-        font-size: 0.9rem;
-    }
-
-    main {
-        padding: 0.8rem;
     }
 }
