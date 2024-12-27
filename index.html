@@ -17,6 +17,7 @@
         <button onclick="showSection('consulta-inversionistas')">Consulta de Inversionistas</button>
     </div>
 
+    <!-- Sección de Ventas -->
     <main id="ventas">
         <h2>Registro de Ventas</h2>
         <form id="form-sales">
@@ -38,6 +39,7 @@
         </form>
     </main>
 
+    <!-- Sección de Inventario -->
     <main id="inventario">
         <h2>Inventario</h2>
         <table>
@@ -59,6 +61,7 @@
         </div>
     </main>
 
+    <!-- Sección de Entradas -->
     <main id="entradas">
         <h2>Registro de Entradas</h2>
         <form id="form-entries">
@@ -75,6 +78,7 @@
         </form>
     </main>
 
+    <!-- Sección de Consulta de Inversionistas -->
     <main id="consulta-inversionistas">
         <h2>Consulta de Inversionistas</h2>
         <label for="investor-filter">Selecciona un Usuario:</label>
@@ -92,6 +96,7 @@
             <ul id="purchase-history"></ul>
         </div>
         <div class="button-container">
+            <button type="button" onclick="exportarCompras()">Exportar Compras</button>
             <button type="button" class="back-button" onclick="showMenu()">Regresar</button>
         </div>
     </main>
