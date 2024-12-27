@@ -3,14 +3,14 @@ body {
     font-family: -apple-system, BlinkMacSystemFont, "San Francisco", Arial, sans-serif;
     margin: 0;
     padding: 0;
-    background-color: #f9f9fb; /* Fondo claro */
+    background-color: #f9f9fb;
     color: #1c1c1e;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
     min-height: 100vh;
-    overflow-x: hidden; /* Evita desplazamiento horizontal */
+    overflow-x: hidden;
 }
 
 /* Encabezado */
@@ -25,55 +25,6 @@ header {
     border-bottom: 2px solid #e0e0e5;
 }
 
-/* Animaciones */
-@keyframes fadeIn {
-    from {
-        opacity: 0;
-        transform: translateY(20px);
-    }
-    to {
-        opacity: 1;
-        transform: translateY(0);
-    }
-}
-
-@keyframes slideIn {
-    from {
-        opacity: 0;
-        transform: translateX(100%);
-    }
-    to {
-        opacity: 1;
-        transform: translateX(0);
-    }
-}
-
-@keyframes slideOut {
-    from {
-        opacity: 1;
-        transform: translateX(0);
-    }
-    to {
-        opacity: 0;
-        transform: translateX(-100%);
-    }
-}
-
-/* Transición entre interfaces */
-main {
-    display: none;
-    animation: fadeIn 0.4s ease-in-out;
-    padding: 1rem;
-    width: 90%;
-    max-width: 420px;
-    background-color: #ffffff;
-    border-radius: 16px;
-    box-shadow: 0px 6px 18px rgba(0, 0, 0, 0.1);
-    margin-top: 1rem;
-    text-align: center;
-    overflow: hidden;
-}
-
 /* Menú principal */
 .menu {
     display: flex;
@@ -85,43 +36,32 @@ main {
     width: 100%;
 }
 
-/* Botones del menú */
+/* Botones generales */
 .menu button, .button, .back-button {
-    background-color: #007aff;
-    color: white;
-    border: none;
+    background-color: #ffffff; /* Fondo blanco */
+    color: #1c1c1e; /* Texto en negro */
+    border: 2px solid #1c1c1e; /* Contorno negro */
     padding: 0.8rem 1.2rem;
-    border-radius: 12px;
+    border-radius: 12px; /* Bordes redondeados */
     font-size: 1rem;
     text-align: center;
     cursor: pointer;
     width: 90%;
     max-width: 300px;
-    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.15);
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.15); /* Efecto bombeado */
     transition: all 0.3s ease-in-out;
 }
 
 .menu button:hover, .button:hover, .back-button:hover {
-    background-color: #005fcb;
-    box-shadow: 0px 6px 12px rgba(0, 0, 0, 0.2);
-    transform: translateY(-3px);
+    background-color: #f0f0f5; /* Fondo más claro al pasar el cursor */
+    transform: translateY(-2px); /* Sutil elevación */
+    box-shadow: 0px 6px 12px rgba(0, 0, 0, 0.2); /* Sombra más pronunciada */
 }
 
 .menu button:active, .button:active, .back-button:active {
-    background-color: #0047a5;
-    transform: translateY(0);
-    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.15);
-}
-
-/* Botones de cancelar */
-.back-button {
-    background-color: #f0f0f5;
-    color: #333;
-    border: 1px solid #d1d1d6;
-}
-
-.back-button:hover {
-    background-color: #e5e5ea;
+    background-color: #e5e5ea; /* Fondo ligeramente más oscuro al hacer clic */
+    transform: translateY(0); /* Baja de nuevo */
+    box-shadow: 0px 2px 6px rgba(0, 0, 0, 0.1); /* Sombra más pequeña */
 }
 
 /* Formularios */
@@ -173,6 +113,44 @@ th, td {
 th {
     background-color: #f5f5f7;
     font-weight: bold;
+}
+
+/* Animaciones */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+@keyframes fadeOut {
+    from {
+        opacity: 1;
+    }
+    to {
+        opacity: 0;
+    }
+}
+
+/* Transiciones entre secciones */
+main {
+    display: none;
+    animation: fadeIn 0.3s ease-in-out;
+    opacity: 0; /* Inicialmente oculto */
+}
+
+main.show {
+    display: block;
+    opacity: 1;
+    animation: fadeIn 0.3s ease-in-out;
+}
+
+main.hide {
+    animation: fadeOut 0.3s ease-in-out;
+    opacity: 0;
+    display: none;
 }
 
 /* Estilo adaptable para dispositivos móviles */
