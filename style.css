@@ -27,13 +27,15 @@ header {
 /* Menú principal */
 .menu {
     display: flex;
-    flex-direction: column; /* Botones verticales en el menú principal */
+    flex-direction: column; /* Botones en columna */
     align-items: center;
     justify-content: center;
-    gap: 1.5rem;
+    gap: 1rem; /* Espaciado entre botones */
     margin-top: 2rem;
+    width: 90%;
 }
 
+/* Botones del menú */
 .menu button {
     background-color: #ffffff;
     color: #1c1c1e;
@@ -41,9 +43,9 @@ header {
     padding: 1rem;
     cursor: pointer;
     border-radius: 12px;
-    font-size: 1.2rem;
-    width: 90%; /* Botones se ajustan al ancho */
-    max-width: 320px;
+    font-size: 1rem;
+    width: 100%; /* Botones ocupan el ancho del contenedor */
+    max-width: 320px; /* Ancho máximo para pantallas más grandes */
     transition: all 0.3s ease-in-out;
     text-align: center;
     box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
@@ -63,34 +65,13 @@ header {
 /* Contenido principal */
 main {
     display: none;
-    padding: 2rem;
-    width: 100%;
+    padding: 1.5rem;
+    width: 90%; /* Se ajusta al ancho del contenedor en pantallas pequeñas */
     max-width: 500px;
     background-color: #ffffff;
     border-radius: 16px;
     box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.2);
     margin-top: 1rem;
-    text-align: center;
-    animation: fadeIn 0.3s ease-in-out;
-}
-
-@keyframes fadeIn {
-    from {
-        opacity: 0;
-        transform: translateY(10px);
-    }
-    to {
-        opacity: 1;
-        transform: translateY(0);
-    }
-}
-
-/* Títulos */
-h2 {
-    color: #1c1c1e;
-    margin-bottom: 1.5rem;
-    font-size: 1.5rem;
-    font-weight: 600;
     text-align: center;
 }
 
@@ -98,8 +79,8 @@ h2 {
 form {
     display: flex;
     flex-direction: column;
-    align-items: center;
-    gap: 1.5rem;
+    align-items: stretch; /* Estira los elementos */
+    gap: 1rem; /* Espaciado entre los campos */
     width: 100%;
 }
 
@@ -107,12 +88,12 @@ form label {
     font-size: 1rem;
     font-weight: bold;
     color: #3a3a3c;
-    text-align: center;
+    text-align: left;
     display: block;
     width: 100%;
 }
 
-form input {
+form input, form select {
     width: 100%;
     padding: 0.75rem;
     border: 1px solid #d1d1d6;
@@ -133,6 +114,8 @@ form input {
     font-size: 1rem;
     text-align: center;
     transition: all 0.3s ease-in-out;
+    width: 100%;
+    max-width: 320px; /* Botones grandes pero no excesivos */
     box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
 }
 
@@ -146,6 +129,7 @@ form input {
     box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
 }
 
+/* Botón de regresar */
 .back-button {
     background-color: #f5f5f7;
     color: #1c1c1e;
@@ -160,18 +144,9 @@ form input {
     transition: all 0.3s ease-in-out;
 }
 
-.back-button:hover {
+/.back-button:hover {
     background-color: #e5e5ea;
     transform: translateY(-3px);
-}
-
-/* Contenedores con múltiples botones (horizontal) */
-.button-container {
-    display: flex;
-    flex-direction: row; /* Botones organizados en fila (izquierda a derecha) */
-    justify-content: center;
-    gap: 1rem; /* Espaciado entre botones */
-    margin-top: 1rem;
 }
 
 /* Tablas */
@@ -194,4 +169,29 @@ th {
     background-color: #f5f5f7;
     font-weight: bold;
     text-align: center;
+}
+
+/* Estilo adaptable para dispositivos móviles */
+@media screen and (max-width: 600px) {
+    body {
+        font-size: 14px;
+    }
+
+    header {
+        font-size: 1.2rem;
+    }
+
+    .menu button, .button {
+        font-size: 0.9rem;
+        padding: 0.6rem;
+    }
+
+    form input, form select {
+        padding: 0.6rem;
+        font-size: 0.9rem;
+    }
+
+    main {
+        padding: 1rem;
+    }
 }
