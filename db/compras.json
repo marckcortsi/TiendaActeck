@@ -1,0 +1,16 @@
+[
+    {
+        "comprador": "Carlos",
+        "producto": "Producto A",
+        "cantidad": 2,
+        "precio": 50,
+        "total": 100
+    },
+    {
+        "comprador": "Arturo",
+        "producto": "Producto B",
+        "cantidad": 1,
+        "precio": 30,
+        "total": 30
+    }
+]
